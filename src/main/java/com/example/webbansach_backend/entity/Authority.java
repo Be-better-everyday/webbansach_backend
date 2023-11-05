@@ -19,6 +19,7 @@ public class Authority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "authority_id")
     private Long authorityId;
+//    private int authorityId;
     @Column(name = "authority_name")
     private String authorityName;
 

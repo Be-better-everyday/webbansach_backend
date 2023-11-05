@@ -7,18 +7,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+//@Builder
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Entity
 @Table(name = "review")
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
-    private Long reviewId;
-    @Column(name = "start_rank")
-    private Integer starRank;
+    private long reviewId;
+    @Column(name = "star_rank")
+    private float starRank;
     private String content;
     @ManyToOne(
 //            fetch = FetchType.LAZY,

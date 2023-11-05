@@ -1,39 +1,36 @@
 package com.example.webbansach_backend.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+//@Builder
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Entity
 @Table(name = "book")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id")
-    private Long bookId;
+    private int bookId;
     @Column(name = "book_name", length = 255)
     private String bookName;
     private String author;
     @Column(name = "isbn", length = 255)
     private String ISBN;
-    @Column(columnDefinition = "text")
-    private String desc;
+    @Column(name =  "description", columnDefinition = "text")
+    private String description;
     @Column(name = "list_price")
     private double listPrice;
     @Column(name = "actual_price")
     private double actualPrice;
     @Column(name = "stock_quantity")
-    private Integer stockQuantity;
+    private int stockQuantity;
     @Column(name = "average_star")
-    private double averageStar;
+    private Double averageStar;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST, CascadeType.MERGE,
@@ -63,5 +60,5 @@ public class Book {
     private List<OrderDetail> orderDetailList;
     @OneToMany(mappedBy = "book",  // using property name in the corresponding Entity
             fetch = FetchType.LAZY,cascade =  CascadeType.ALL)
-    private List<favouriteBook> favouriteBookList;
+    private List<FavouriteBook> favouriteBookList;
 }

@@ -7,17 +7,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+//@Builder
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Entity
 @Table(name = "image")
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "image_id")
-    private Long imageId;
-    @Column(name = "image_name", length = 255)
+//    private Long imageId;
+    private int imageId;
+    @Column(name = "image_name")
     private String imageName;
     @Column(name = "is_icon")
     private boolean isIcon;
@@ -26,8 +27,9 @@ public class Image {
     @Column(name = "image_data")
     @Lob
     private String imageData; // using String or Blob (use Blob when data capacity is big)
+
     @ManyToOne(
-            fetch = FetchType.LAZY,
+//            fetch = FetchType.LAZY,
             cascade = {
             CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH

@@ -1,5 +1,6 @@
 package com.example.webbansach_backend;
 
+import com.example.webbansach_backend.dao.OrderDetailRepository;
 import com.example.webbansach_backend.entity.BookCategory;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,6 +12,7 @@ class WebbansachBackendApplicationTests {
     void contextLoads() {
         BookCategory bookCategory = new BookCategory();
         bookCategory.setCategoryName("");
+
     }
 
 }

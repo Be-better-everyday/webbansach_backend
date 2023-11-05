@@ -8,18 +8,18 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Entity
 @Table(name = "payment_method")
 public class PaymentMethod {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "payment_method_id")
-    private Long paymentMethodId;
+    private long paymentMethodId;
     @Column(name = "payment_method_name")
     private String paymentMethodName;
-    private String desc;
+    private String description;
     @Column(name = "payment_free")
     private double paymentFee;
     @OneToMany(mappedBy = "paymentMethod", fetch = FetchType.LAZY, cascade = {
