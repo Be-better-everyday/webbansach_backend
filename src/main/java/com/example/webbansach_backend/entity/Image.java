@@ -24,7 +24,8 @@ public class Image {
     private boolean isIcon;
     @Column(name = "link")
     private String link;
-    @Column(name = "image_data")
+    // using "LONGTEXT" to store "Base64" image
+    @Column(name = "image_data", columnDefinition = "LONGTEXT")
     @Lob
     private String imageData; // using String or Blob (use Blob when data capacity is big)
 
