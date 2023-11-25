@@ -19,7 +19,7 @@ public class BookCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
 //    private Long categoryId;
-    private int categoryId;
+    private Integer categoryId;
     @Column(name = "category_name")
     private String categoryName;
     @ManyToMany(fetch = FetchType.LAZY, cascade = {
