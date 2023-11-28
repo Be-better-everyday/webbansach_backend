@@ -1,14 +1,15 @@
 package com.example.webbansach_backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
 @Data
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "user")
 public class User {
@@ -30,6 +31,11 @@ public class User {
     private String purchasingAddress;
     @Column(name = "shipping_address")
     private String shippingAddress;
+//    @JsonIgnore
+    private boolean enabled = false;
+    @JsonIgnore
+    @Column(name = "verification_code")
+    private String verificationCode;
 
     @OneToMany(mappedBy = "user",  // using property name in the corresponding Entity
             fetch = FetchType.LAZY,cascade = {
@@ -45,7 +51,7 @@ public class User {
     })
     private List<FavouriteBook> favouriteBookList;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {
             CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH
     })
@@ -63,4 +69,14 @@ public class User {
     })
     private List<Order> orderList;
 
+
+//    @Override
+    public String getPassword() {
+        System.out.println("password: " + this.password);
+        return this.password;
+    }
+    public String getFullName()
+    {
+        return this.firstName + " " + this.lastName;
+    }
 }
