@@ -8,7 +8,8 @@ public class Endpoints {
             "/users/search/existsByUsername", "/users/search/existsByEmail"
     };
     public static final String[] PUBLIC_POST_ENDPOINTS = {
-            "/accounts/register"
+            "/accounts/register",
+            "/accounts/login"
     };
 
     public static final String[] ADMIN_POST_ENDPOINTS = {

@@ -73,7 +73,7 @@ public class AccountService {
                 userRepository.save(user);
                 return ResponseEntity.ok("Verify successfully!");
             }else{
-                return ResponseEntity.badRequest().body(new Notice("Wrong verifyCode"));
+                return ResponseEntity.badRequest().body(new Notice("Wrong verificationCode"));
             }
         }
     }
