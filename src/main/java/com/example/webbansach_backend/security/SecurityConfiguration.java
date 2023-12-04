@@ -51,8 +51,8 @@ public class SecurityConfiguration {
                 config -> config
                         .requestMatchers(HttpMethod.GET, Endpoints.PUBLIC_GET_ENDPOINTS).permitAll()
                         .requestMatchers(HttpMethod.POST, Endpoints.PUBLIC_POST_ENDPOINTS).permitAll()
-                        .requestMatchers(HttpMethod.GET, "users/**", "/users").hasAnyAuthority("ADMIN", "CREATOR")
-//                        .requestMatchers(HttpMethod.GET, "users/**", "/users").authenticated()
+                        .requestMatchers(HttpMethod.GET, Endpoints.ADMIN_GET_ENDPOINTS).hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST, Endpoints.ADMIN_POST_ENDPOINTS).hasAnyAuthority("ADMIN")
         );
         http.cors(
                 cors -> {
