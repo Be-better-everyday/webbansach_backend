@@ -51,6 +51,8 @@ public class AccountController {
             if(authentication.isAuthenticated()){
                 System.out.println("inner if is authenticated");
                 final String jwt = jwtService.generateToken(loginRequest.getUsername());
+
+                System.out.println("Username: " + jwtService.extractUsername(jwt));
                 System.out.println("jwt");
                 return ResponseEntity.ok(new JwtResponse(jwt));
             }
