@@ -24,7 +24,6 @@ import javax.naming.AuthenticationException;
 @AllArgsConstructor
 public class AccountController {
     private AccountService accountService;
-    @Autowired
     private AuthenticationManager authenticationManager;
     private UserService userService;
     private JwtService jwtService;

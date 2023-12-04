@@ -1,6 +1,8 @@
 package com.example.webbansach_backend.security;
 
+import com.example.webbansach_backend.filter.JwtFilter;
 import com.example.webbansach_backend.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -10,16 +12,20 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.Arrays;
 
 @Configuration
+@AllArgsConstructor
 public class SecurityConfiguration {
+    private JwtFilter jwtFilter;
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -58,6 +64,9 @@ public class SecurityConfiguration {
                         return corsConfig;
                     });
                 });
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+        /*  set "session" is "stateless"    */
+        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         http.httpBasic(Customizer.withDefaults());
         http.csrf(csrf -> csrf.disable());
